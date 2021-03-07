@@ -9,52 +9,40 @@ const specialCharacter = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(",
 
 
 //Prompt "How many characters would you like in your password"
+function getUserInputPasswordLength(){
+  let userNumInput = parseInt(prompt("How many characters would you like in your password?"
+  ));
+  if (isNaN(userNumInput)){
+    alert("Input must be a number!");
+    getUserInputPasswordLength();
+  } else {
+
+    //Alert "Password must contain atleast 8 characters"
+    if (userNumInput < 8){
+      alert("Password must be a minimum of 8 characters")
+      getUserInputPasswordLength()
+
+      //Alert "Password must be no longer than 128 characters"
+    } else if (userNumInput > 128){
+      alert("Password must be no greater than 128 characters")
+    } else{
+      return userNumInput;
+    }
+}
 
 
-//Prompt "Password must contain atleast 8 characters"
+let confirmedNumber = getUserInputPasswordLength()
+console.log(confirmedNumber)
+//Confirm "Would you like lower cased letters in your password"
+
+//Confirm"Would you like upper cased letters in your password"
+
+//Confirm "Would you like special characters in your password"
+
+//Confirm "Would you like numerical characters in your password"
 
 
-//Prompt "Password must be no longer than 128 characters"
-
-
-//"Would you like lower cased letters in your password"
-
-//"Would you like upper cased letters in your password"
-
-//"Would you like special characters in your password"
-
-//"Would you like numbers in your password"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Need a function to iterate through each array depending on users response
 
 
 
