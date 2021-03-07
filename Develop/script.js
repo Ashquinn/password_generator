@@ -10,47 +10,94 @@ const specialCharacter = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(",
 
 //Prompt "How many characters would you like in your password"
 function getUserInputPasswordLength(){
-  let userNumInput = parseInt(prompt("How many characters would you like in your password?"
+  let passwordLength = parseInt(prompt("How many characters would you like in your password?"
   ));
-  if (isNaN(userNumInput)){
+  if (isNaN(passwordLength)){
     alert("Input must be a number!");
     getUserInputPasswordLength();
-  } else {
+   } else {
 
     //Alert "Password must contain atleast 8 characters"
-    if (userNumInput < 8){
+    if (passwordLength < 8){
       alert("Password must be a minimum of 8 characters")
       getUserInputPasswordLength()
 
       //Alert "Password must be no longer than 128 characters"
-    } else if (userNumInput > 128){
+     } else if (passwordLength > 128){
       alert("Password must be no greater than 128 characters")
-    } else{
-      return userNumInput;
+      getUserInputPasswordLength()
+     } else{
+       alert("Your password will be " + passwordLength + " characters long");
     }
+  }
+
+  let includeSpecialCharacters = confirm('Click OK to include special characters.');
+
+  let includeNumericCharacters = confirm('Click OK to include numeric characters.');
+
+  let includeLowerCasedCharacters = confirm('Click OK to include lowercase characters.');
+
+  let includeUpperCasedCharacters = confirm('Click OK to include uppercase characters.');
+
+  let userPasswordOptions = {
+    passwordLength: passwordLength,
+    includeSpecialCharacters: includeSpecialCharacters,
+    includeNumericCharacters: includeNumericCharacters,
+    includeLowerCasedCharacters: includeLowerCasedCharacters,
+    includeUpperCasedCharacters: includeUpperCasedCharacters
+  };
+  return userPasswordOptions;
+}
+
+//Randon function attempt
+function randomize(characters) {
+  return characters[Math.floor(Math.random()*characters.length)]
 }
 
 
-let confirmedNumber = getUserInputPasswordLength()
-console.log(confirmedNumber)
-//Confirm "Would you like lower cased letters in your password"
-
-//Confirm"Would you like upper cased letters in your password"
-
-//Confirm "Would you like special characters in your password"
-
-//Confirm "Would you like numerical characters in your password"
 
 
+
+
+
+
+
+
+
+//My attempt to create function
+
+function createPassword(){
+  let options = getUserInputPasswordLength();
+  let characterOptions = []
+
+  if (options.includeLowerCasedCharacters) {
+    characterOptions = characterOptions.concat(lowerCased)
+  }
+  if (options.includeUpperCasedCharacters) {
+    characterOptions = characterOptions.concat(upperCased)
+  }
+  if (options.includeSpecialCharacters) {
+    characterOptions = characterOptions.concat(specialCharacter)
+  }
+  if (options.includeNumericalCharacters) {
+    characterOptions = characterOptions.concat(numbers)
+  }
+  //for (let i = 0; i < passwordLength, i++) {
+    
+  }
+
+
+
+//}
+
+createPassword()
 //Need a function to iterate through each array depending on users response
-
-
 
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+//Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = createPassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
