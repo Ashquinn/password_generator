@@ -1,10 +1,14 @@
 // Lower case letter array for retrieval 
 const lowerCased = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
+// Upper case letter array for retrieval 
+
 const upperCased = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
+// Number array for retrieval 
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
+//
 const specialCharacter = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "=", "+", "?", "<", ">", ",", ".", ":", ";", "[", "]", "/"]
 
 
@@ -49,60 +53,40 @@ function getUserInputPasswordLength(){
   return userPasswordOptions;
 }
 
-//Randon function attempt
 function randomize(characters) {
   return characters[Math.floor(Math.random()*characters.length)]
 }
 
-
-
-
-
-
-
-
-
-
-
-//My attempt to create function
-
 function createPassword(){
   let options = getUserInputPasswordLength();
   let characterOptions = []
+  let possibleOptions = []
+
 
   if (options.includeLowerCasedCharacters) {
-    characterOptions = characterOptions.concat(lowerCased)
+    possibleOptions = possibleOptions.concat(lowerCased)
   }
   if (options.includeUpperCasedCharacters) {
-    characterOptions = characterOptions.concat(upperCased)
+    possibleOptions = possibleOptions.concat(upperCased)
   }
   if (options.includeSpecialCharacters) {
-    characterOptions = characterOptions.concat(specialCharacter)
+    possibleOptions = possibleOptions.concat(specialCharacter)
   }
-  if (options.includeNumericalCharacters) {
-    characterOptions = characterOptions.concat(numbers)
+  if (options.includeNumericCharacters) {
+    possibleOptions = possibleOptions.concat(numbers)
   }
-  //for (let i = 0; i < passwordLength, i++) {
-    
+  for (let i = 0; i < options.passwordLength; i++) {
+    characterOptions.push(randomize(possibleOptions))
   }
-
-
-
-//}
-
-createPassword()
-//Need a function to iterate through each array depending on users response
-
-var generateBtn = document.querySelector("#generate");
-
-//Write password to the #password input
-function writePassword() {
-  var password = createPassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  return characterOptions.join("")
 }
 
-// Add event listener to generate button
+let generateBtn = document.querySelector("#generate");
+
+function writePassword() {
+  let password = createPassword();
+  let passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
+
 generateBtn.addEventListener("click", writePassword);
