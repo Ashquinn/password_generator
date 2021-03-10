@@ -7,4 +7,4 @@ Upon launching the webpage a function is called and the user is prompeted to giv
 Images of deployed webpage can be found here: (password_generator/Images/generator image.png password_generator/Images/password image.png)
 
 
-Deployed webpage can be found here: 
+Deployed webpage can be found here: https://ashquinn.github.io/password_generator/
